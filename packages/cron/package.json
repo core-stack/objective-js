@@ -1,18 +1,16 @@
 {
-  "name": "@objective-js/server",
+  "name": "@objective-js/cron",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "ts-node src/server.ts",
+    "dev": "ts-node src/index.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/index.js"
   },
   "dependencies": {
-    "@rapidstack/core": "workspace:*",
-    "fastify": "^4.23.2",
-    "fastify-cors": "^8.2.1"
+    "@rapidstack/core": "workspace:*"
   },
   "devDependencies": {
     "ts-node": "^10.9.1",
