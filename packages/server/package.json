@@ -10,7 +10,7 @@
     "start": "node dist/server.js"
   },
   "dependencies": {
-    "@rapidstack/core": "workspace:*",
+    "@objective-js/core": "workspace:*",
     "fastify": "^4.23.2",
     "fastify-cors": "^8.2.1"
   },

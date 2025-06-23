@@ -9,9 +9,11 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
+    "fast-glob": "^3.3.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/node": "^24.0.3",
     "typescript": "^5.0.0"
   },
   "keywords": [],
