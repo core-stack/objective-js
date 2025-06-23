@@ -7,7 +7,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "paths": {
-      "@objective-js/*": ["../*/src"]
+      "@zetten/*": ["../*/src"]
     }
   },
   "include": ["src/**/*"],

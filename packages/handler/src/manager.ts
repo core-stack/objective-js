@@ -1,16 +1,21 @@
 import path from 'path';
 import { ZodError } from 'zod';
 
-import { defaultExt, Finder, Logger } from '@objective-js/core';
+import { defaultExt, Finder, Logger } from '@zetten/core';
+import { Manager } from '@zetten/core/src/manager';
 
 import { Handler, handlerSchema, Middleware, middlewareSchema } from './schema';
 
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch"] as const;
 const defaultPatterns = HTTP_METHODS.map((method) => `**/${method}.handler.${defaultExt}`);
 
-export abstract class HandlerManager {
+export abstract class HandlerManager implements Manager {
   private handlers: Handler[] = [];
-  constructor(private logger: Logger) { }
+  constructor(private baseDir: string, private logger: Logger = console) { }
+  
+  init(): void {
+    this.readFrom(this.baseDir, ...defaultPatterns);
+  }
 
   private async findMiddlewares(routeDir: string, baseDir: string): Promise<Middleware[]> {
     const middlewares: Middleware[] = [];
@@ -68,4 +73,5 @@ export abstract class HandlerManager {
   }
 
   abstract run(): void;
+
 }

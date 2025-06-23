@@ -1,5 +1,5 @@
 {
-  "name": "@objective-js/handler",
+  "name": "@zetten/handler",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -10,7 +10,7 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@objective-js/core": "workspace:*",
+    "@zetten/core": "workspace:*",
     "zod": "^3.22.4"
   },
   "devDependencies": {

@@ -1,14 +1,18 @@
 
 
-import { defaultExt, File, Finder, Logger } from '@objective-js/core';
+import { defaultExt, File, Finder, Logger, Manager } from '@zetten/core';
 
 import { Bootstrap, bootstrapSchema } from './schema';
 
 const defaultPatterns = `**/*.cron.${defaultExt}`;
 
-export abstract class BootstrapManager {
+export abstract class BootstrapManager implements Manager {
   private files: File<Bootstrap>[] = [];
-  constructor(private logger: Logger) { }
+  constructor(private baseDir: string, private logger: Logger = console) { }
+
+  init(): void {
+    this.readFrom(this.baseDir, ...defaultPatterns);
+  }
 
   async readFrom(baseDir: string, ...pattern: string[]) {
     if (!pattern.length) pattern = [defaultPatterns];
