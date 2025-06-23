@@ -1,0 +1,21 @@
+{
+  "name": "objective-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm:dev-*\"",
+    "dev-server": "cd packages/server && npm run dev",
+    "dev-client": "cd packages/client && npm run dev",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ]
+  
+}
