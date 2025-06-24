@@ -10,7 +10,7 @@
       "@zetten/*": ["../*/src"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "index.ts"],
   "references": [
     { "path": "../core" },
     { "path": "../handler" },
