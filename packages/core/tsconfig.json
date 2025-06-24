@@ -4,11 +4,11 @@
     "module": "CommonJS",
     "types": ["node"],
     "declaration": true,
+    "baseUrl": ".",
     "outDir": "./dist",
     "strict": true,
     "composite": true,
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*"]
 }

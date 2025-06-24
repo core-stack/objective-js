@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -b",
     "dev": "tsc --watch"
   },
   "dependencies": {
@@ -15,6 +15,9 @@
   "devDependencies": {
     "@types/node": "^24.0.3",
     "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [],
   "author": "",
