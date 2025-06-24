@@ -1,5 +1,5 @@
 {
-  "name": "@objective-js/queue",
+  "name": "@zetten/queue",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -9,8 +9,9 @@
     "build": "tsc",
     "start": "node dist/index.js"
   },
-  "dependencies": {
-    "@rapidstack/core": "workspace:*"
+  "peerDependencies": {
+    "@zetten/core": "^1.0.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "ts-node": "^10.9.1",

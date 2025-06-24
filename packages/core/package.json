@@ -1,5 +1,5 @@
 {
-  "name": "@objective-js/core",
+  "name": "@zetten/core",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -9,9 +9,11 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
+    "fast-glob": "^3.3.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/node": "^24.0.3",
     "typescript": "^5.0.0"
   },
   "keywords": [],
