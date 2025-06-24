@@ -26,6 +26,4 @@ export abstract class CronManager implements Manager {
       this.files.push(file);
     });
   }
-
-  abstract run(): void;
 }

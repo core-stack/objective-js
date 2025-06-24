@@ -4,7 +4,6 @@
     "module": "CommonJS",
     "outDir": "./dist",
     "strict": true,
-    "composite": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "paths": {
@@ -14,5 +13,6 @@
   "include": ["src/**/*"],
   "references": [
     { "path": "../core" },
+    { "path": "../handler" },
   ]
 }

@@ -1,20 +1,24 @@
 import path from 'path';
 import { ZodError } from 'zod';
 
-import { defaultExt, Finder, Logger } from '@zetten/core';
-import { Manager } from '@zetten/core/src/manager';
+import { defaultExt, Finder, Logger, Manager, Zetten } from '@zetten/core';
 
 import { Handler, handlerSchema, Middleware, middlewareSchema } from './schema';
 
 const HTTP_METHODS = ["get", "post", "put", "delete", "patch"] as const;
 const defaultPatterns = HTTP_METHODS.map((method) => `**/${method}.handler.${defaultExt}`);
 
-export abstract class HandlerManager implements Manager {
-  private handlers: Handler[] = [];
+export class HandlerManager implements Manager {
+  private handlers: Array<Handler & { path: string, method: typeof HTTP_METHODS[number] }> = [];
   constructor(private baseDir: string, private logger: Logger = console) { }
   
-  init(): void {
+  init(zetten: Zetten): void {
     this.readFrom(this.baseDir, ...defaultPatterns);
+    this.logger.info(`Found ${this.handlers.length} handlers`);
+    const server = zetten.getServerAdapter();
+    this.handlers.forEach(handler => {
+      server.addRoute(handler.method, handler.path, handler.handler);
+    })
   }
 
   private async findMiddlewares(routeDir: string, baseDir: string): Promise<Middleware[]> {
@@ -68,10 +72,12 @@ export abstract class HandlerManager implements Manager {
         allMiddlewares.push(...handlerMiddlewares);
       }
       const filteredMiddlewares = allMiddlewares.filter(m => m !== undefined);
-      this.handlers.push({ ...file.module, middlewares: filteredMiddlewares.length > 0 ? filteredMiddlewares : undefined });
+      this.handlers.push({
+        ...file.module,
+        method: file.name.split('.')[0] as typeof HTTP_METHODS[number],
+        path: file.path.replace(`${baseDir}/`, '/'),
+        middlewares: filteredMiddlewares.length > 0 ? filteredMiddlewares : undefined,
+      });
     });
   }
-
-  abstract run(): void;
-
 }
